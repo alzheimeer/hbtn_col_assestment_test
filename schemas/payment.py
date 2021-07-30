@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class Payment(BaseModel):
-              idPayments: Optional[str]
+              id: Optional[str]
               type: str
               date: datetime
               txn_id: int

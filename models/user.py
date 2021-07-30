@@ -3,14 +3,14 @@ from sqlalchemy.sql.sqltypes import Float, Integer, String, Boolean, DateTime
 from config.db import meta, engine
 
 users = Table("users", meta,
-              Column("idUser", Integer, primary_key = True),
+              Column("id", Integer, primary_key = True),
               Column("name", String(50)),
-              Column("last_name", String(50)),
+              Column("lastname", String(50)),
               Column("gov_id", Integer),
               Column("email", String(80)),
               Column("company", String(50)),
               Column("password", String(255)),
-              Column("active", Boolean)
+              Column("active", Boolean) 
             )
 
 meta.create_all(engine)

@@ -30,7 +30,8 @@ def create_user(user: User):
         "lastname": user.lastname,
         "email": user.email, 
         "company": user.company, 
-        "gov_id": user.gov_id}
+        "gov_id": user.gov_id,
+        "active": user.active}
     new_user["password"] = f.encrypt(user.password.encode("utf-8"))
     result = conn.execute(users.insert().values(new_user))
     # consultamos en la tabla por el id que acaba de generarse y lo retorna
@@ -46,6 +47,7 @@ def update_user(id: str, user: User):
         email=user.email,
         company=user.company,
         gov_id=user.gov_id,
+        active=user.active,
         password=f.encrypt(user.password.encode("utf-8"))
     ).where(users.c.id == id))
     return conn.execute(users.select().where(users.c.id == id)).first()

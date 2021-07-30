@@ -9,3 +9,4 @@ class User(BaseModel):
     password: str
     gov_id: int
     company: str
+    active: bool

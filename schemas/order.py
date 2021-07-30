@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class Order(BaseModel):
-              idOrder: Optional[str]
+              id: Optional[str]
               date: datetime
               total: float
               subtotal: float

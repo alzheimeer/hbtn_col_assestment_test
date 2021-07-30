@@ -3,7 +3,7 @@ from sqlalchemy.sql.sqltypes import Float, Integer, String, Boolean, DateTime
 from config.db import meta, engine
 
 orders = Table("orders", meta,
-              Column("idOrder", Integer, primary_key = True),
+              Column("id", Integer, primary_key = True),
               Column("date", DateTime),
               Column("total", Float),
               Column("subtotal", Float),
