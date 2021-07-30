@@ -4,6 +4,7 @@ from config.db import conn
 from models.payment import payments
 from cryptography.fernet import Fernet
 from starlette.status import HTTP_204_NO_CONTENT
+from uuid import uuid4 as uuid
 
 # Generamos aleatorio unico
 key = Fernet.generate_key()
@@ -26,6 +27,7 @@ def get_payment(id: str):
 @payment.post("/payments", response_model=Payment, tags=["payments"])
 def create_payment(payment: Payment):
     new_payment = {
+        "id": str(uuid()),
         "type": payment.type, 
         "date": payment.date,
         "txn_id": payment.txn_id, 

@@ -4,6 +4,7 @@ from config.db import conn
 from models.order import orders
 from cryptography.fernet import Fernet
 from starlette.status import HTTP_204_NO_CONTENT
+from uuid import uuid4 as uuid
 
 # Generamos aleatorio unico
 key = Fernet.generate_key()
@@ -26,6 +27,7 @@ def get_order(id: str):
 @order.post("/orders", response_model=Order, tags=["orders"])
 def create_order(order: Order):
     new_order = {
+        "id": str(uuid()),
         "date": order.date, 
         "total": order.total,
         "subtotal": order.subtotal, 

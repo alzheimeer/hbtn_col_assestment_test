@@ -1,5 +1,7 @@
 from schemas.user import User
-from fastapi import APIRouter, Response, status
+from fastapi import APIRouter, Response, status, Depends
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from uuid import uuid4 as uuid
 from config.db import conn
 from models.user import users
 from cryptography.fernet import Fernet
@@ -12,20 +14,29 @@ f = Fernet(key)
 
 user = APIRouter()
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
+
+@user.post('/token')
+async def token(form_data: OAuth2PasswordRequestForm = Depends()):
+    return {'access_token' : form_data.username + 'token'}
+@user.get('/')
+async def index(token: str = Depends(oauth2_scheme)):
+    return {'the_token' : token}
+
+
 
 @user.get("/users", response_model=list[User], tags=["users"])
 def get_users():
     return conn.execute(users.select()).fetchall()
 
-
 @user.get("/users/{id}", response_model=User, tags=["users"])
 def get_user(id: str):
     return conn.execute(users.select().where(users.c.id == id)).first()
 
-
 @user.post("/users", response_model=User, tags=["users"])
 def create_user(user: User):
     new_user = {
+        "id": str(uuid()),
         "name": user.name, 
         "lastname": user.lastname,
         "email": user.email, 

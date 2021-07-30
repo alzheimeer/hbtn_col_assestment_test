@@ -4,6 +4,7 @@ from config.db import conn
 from models.shipping import shippings
 from cryptography.fernet import Fernet
 from starlette.status import HTTP_204_NO_CONTENT
+from uuid import uuid4 as uuid
 
 # Generamos aleatorio unico
 key = Fernet.generate_key()
@@ -26,6 +27,7 @@ def get_shipping(id: str):
 @shipping.post("/shippings", response_model=Shipping, tags=["shippings"])
 def create_shipping(shipping: Shipping):
     new_shipping = {
+        "id": str(uuid()),
         "address": shipping.address, 
         "city": shipping.city,
         "state": shipping.state, 

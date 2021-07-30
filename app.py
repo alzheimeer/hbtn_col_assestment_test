@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from routes.user import user
 from routes.order import order
 from routes.shipping import shipping
 from routes.payment import payment
+ 
 
 app = FastAPI(
     title="Challenger Holberton API",
