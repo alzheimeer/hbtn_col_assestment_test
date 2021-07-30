@@ -5,7 +5,7 @@
 Modules to Install
 
 pip install -r requirements.txt
-pip install fastapi uvicorn pymysql cryptography sqlalchemy python-multipart autopep8
+pip install fastapi uvicorn pymysql cryptography sqlalchemy python-multipart autopep8 jwt passlib
 Need install Mysql server, in my case use: mysql user:root  password: rootroot
 
 
