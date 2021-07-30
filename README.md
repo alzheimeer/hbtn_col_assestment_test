@@ -1,8 +1,26 @@
 # hbtn_col_assestment_test
-Modules
 
-pip freeze > requirements.txt  and pip install -r requirements.txt
+
+
+Modules to Install
+
+pip install -r requirements.txt
 pip install fastapi uvicorn pymysql cryptography sqlalchemy
-mysql user:root  password: rootroot
+Need install Mysql server, in my case use: mysql user:root  password: rootroot
+
+
+
+API DOCUMENTATION
+http://127.0.0.1:8000/docs
+
+Create User:
+{
+  "name": "carlos",
+  "lastname": "quintero",
+  "email": "fogniebla@hotmail.com",
+  "password": "passpass",
+  "gov_id": 80065009,
+  "company": "TekkeColombia"
+}
 
 ![](instruccionesreto.png)
